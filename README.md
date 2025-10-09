@@ -188,7 +188,15 @@
     <div class="faq-answer">Yes, absolutely. While location data is public, your personal information (name, contact details) is kept confidential.</div>
   </div>
 
-  <ion id="login">
+  <div class="faq-item">
+    <div class="faq-question">Is this service available in my city?</div>
+    <div class="faq-answer">We are actively expanding our network of partner hospitals. Currently, we are operational in Delhi. Sign up to be notified when we launch in your city.</div>
+  </div>
+</section>
+
+  <!-- Login -->
+  <!-- Login Section -->
+<section id="login">
   <h2 class="section-title">Login</h2>
 
   <div class="login-tabs" style="display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem;">
@@ -257,8 +265,10 @@
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
-}
 
+  <footer id="contact">
+    <p>©️ 2025 BedMatrix | Smarter Healthcare for Everyone</p>
+  </footer>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -300,7 +310,8 @@
       chatBody.appendChild(div);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
-    function botReply(input) {
+    function botReply(input){
+      function botReply(input) {
   input = input.toLowerCase();
   let reply = "I'm not sure I understand. Could you please clarify?";
 
@@ -335,17 +346,7 @@
   addMessage(reply, 'bot');
 }
 
-    
+    }
   </script>
 </body>
 </html>
-div class="faq-item">
-    <div class="faq-question">Is this service available in my city?</div>
-    <div class="faq-answer">We are actively expanding our network of partner hospitals. Currently, we are operational in Delhi. Sign up to be notified when we launch in your city.</div>
-  </div>
-</section>
-
-
-  <!-- Login -->
-  <!-- Login Section -->
-<sect# Bedmatrix
