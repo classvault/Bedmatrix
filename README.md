@@ -51,15 +51,18 @@
     .hero button { background: var(--primary-color); color:white; padding:0.8rem 2rem; border:none; border-radius:8px; cursor:pointer; font-weight:600; }
 
     /* Features */
-    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px; margin:0 auto;}
-    .feature-card { background: var(--white); padding:2rem; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05); text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-
+      width:1200px; margin:0 auto;}
+    .feature-card { background: var(--white); padding:2rem; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05); 
+      text-align:center; transition: transform 0.3s ease, box-shadow 0.3s ease;}
     .feature-card:hover { transform:translateY(-8px); box-shadow:0 10px 30px rgba(0,0,0,0.1);}
     .feature-icon { width:60px; height:60px; margin-bottom:1rem; }
     .feature-title { font-size:1.3rem; font-weight:600; margin-bottom:0.6rem; color: var(--primary-color);}
     .feature-desc { font-size:1rem; color:var(--text-gray); }
 
     /* Dashboard Table */
-    .dashboard table { width:100%; max-width:1100px; margin:0 auto; border-collapse:collapse; box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+    .dashboard table { width:100%; max-width:1100px; margin:0 auto; border-collapse:collapse; box-shadow:0 4px 20px    
+      rgba(0,0,0,0.05);}
     th,td { padding:1rem; text-align:center; border-bottom:1px solid #E5E7EB;}
     th { background: var(--primary-color); color:white; font-weight:600;}
     tr:hover { background:#F3F4F6; transition:0.3s;}
@@ -71,21 +74,29 @@
 
 
     /* FAQ */
-    .faq-item { max-width:800px; margin:1rem auto; padding:1rem; background: var(--white); border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05);}
+    .faq-item { max-width:800px; margin:1rem auto; padding:1rem; background: var(--white); border-radius:12px; box-
+      shadow:0 6px 20px rgba(0,0,0,0.05);}
     .faq-question { font-weight:600; cursor:pointer; }
     .faq-answer { margin-top:0.5rem; display:none; color:var(--text-gray); }
 
     /* Login */
-    .login-form { max-width:400px; margin:2rem auto; padding:2rem; background: var(--white); border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05);}
-    .login-form input, .login-form button { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:1px solid #D1D5DB; }
+    .login-form { max-width:400px; margin:2rem auto; padding:2rem; background: var(--white); border-radius:12px; box-
+      shadow:0 6px 20px rgba(0,0,0,0.05);}
+    .login-form input, .login-form button { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:1px 
+      solid #D1D5DB; }
     .login-form button { background: var(--primary-color); color:white; border:none; cursor:pointer; }
 
     /* Map */
     #map { width:100%; height:70vh; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin:2rem 0; }
 
     /* Floating Chatbot */
-    .chatbot-toggle { position:fixed; bottom:20px; right:20px; background:var(--secondary-color); color:white; border:none; border-radius:50%; width:60px; height:60px; font-size:1.8rem; cursor:pointer; z-index:1001; box-shadow:0 4px 15px rgba(0,0,0,0.2);}
-    .chatbot-container { position:fixed; bottom:90px; right:20px; width:340px; height:420px; background: var(--white); border-radius:16px; box-shadow:0 6px 25px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; z-index:1002;}
+    .chatbot-toggle { position:fixed; bottom:20px; right:20px; background:var(--secondary-color); color:white; 
+      border:none; border-radius:50%; width:60px; height:60px; font-size:1.8rem; cursor:pointer; z-index:1001; box-
+        shadow:0 
+      4px 15px rgba(0,0,0,0.2);}
+    .chatbot-container { position:fixed; bottom:90px; right:20px; width:340px; height:420px; background: var(--white); 
+      border-radius:16px; box-shadow:0 6px 25px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; 
+      z-index:1002;}
     .chat-header { background: var(--primary-color); color:white; text-align:center; padding:1rem; font-weight:600; }
     .chat-body { flex:1; padding:0.8rem; overflow-y:auto; display:flex; flex-direction:column; gap:0.5rem;}
     .chat-msg { padding:0.6rem 1rem; border-radius:12px; max-width:80%; }
@@ -95,7 +106,8 @@
     .chat-input input { flex:1; border:none; padding:0.8rem; outline:none; }
     .chat-input button { border:none; background: var(--primary-color); color:white; padding:0 1.2rem; cursor:pointer; }
 
-    footer { background: var(--white); text-align:center; padding:1.5rem; margin-top:2rem; box-shadow:0 -2px 6px rgba(0,0,0,0.1);}
+    footer { background: var(--white); text-align:center; padding:1.5rem; margin-top:2rem; box-shadow:0 -2px 6px 
+      rgba(0,0,0,0.1);}
     footer p { color:#4B5563; font-size:0.95rem; }
 
   </style>
@@ -119,7 +131,8 @@
   <!-- Hero -->
   <section class="hero" id="home">
     <h2>Real-Time Hospital Bed Availability</h2>
-    <p>Find available beds in General, ICU, Emergency, and Operation wards instantly. Your healthcare decisions simplified.</p>
+    <p> Find available beds in General, ICU, Emergency, and Operation wards instantly. Your healthcare decisions   
+      simplified. </p>
   </section>
 
   <!-- Features -->
@@ -160,10 +173,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>AIIMS</td><td>25/50</td><td>8/15</td><td>2/10</td><td>1/5</td><td><span class="status fewleft">Few Left</span></td>
+          <td>AIIMS</td><td>25/50</td><td>8/15</td><td>2/10</td><td>1/5</td><td><span class="status fewleft">Few  
+            Left</span></td>
         </tr>
         <tr>
-          <td>Fortis</td><td>10/40</td><td>2/10</td><td>1/5</td><td>0/5</td><td><span class="status available">Available</span></td>
+          <td>Fortis</td><td>10/40</td><td>2/10</td><td>1/5</td><td>0/5</td><td><span class="status 
+            available">Available</span></td>
         </tr>
       </tbody>
     </table>
@@ -176,7 +191,8 @@
 
   <div class="faq-item">
     <div class="faq-question">How do I check bed availability?</div>
-    <div class="faq-answer">Use the live map or the dashboard table to see the current availability of beds in different wards.</div>
+    <div class="faq-answer">Use the live map or the dashboard table to see the current availability of beds in 
+      different wards.</div>
   </div>
 
   <div class="faq-item">
@@ -186,12 +202,14 @@
 
   <div class="faq-item">
     <div class="faq-question">Is my data private?</div>
-    <div class="faq-answer">Yes, absolutely. While location data is public, your personal information (name, contact details) is kept confidential.</div>
+    <div class="faq-answer">Yes, absolutely. While location data is public, your personal information (name, contact 
+      details) is kept confidential.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Is this service available in my city?</div>
-    <div class="faq-answer">We are actively expanding our network of partner hospitals. Currently, we are operational in Delhi. Sign up to be notified when we launch in your city.</div>
+    <div class="faq-answer">We are actively expanding our network of partner hospitals. Currently, we are operational 
+      in Delhi. Sign up to be notified when we launch in your city.</div>
   </div>
 </section>
 
@@ -201,8 +219,10 @@
   <h2 class="section-title">Login</h2>
 
   <div class="login-tabs" style="display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem;">
-    <button onclick="showLogin('user')" id="user-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; background:var(--primary-color); color:white; cursor:pointer;">User Login</button>
-    <button onclick="showLogin('official')" id="official-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; background:#E5E7EB; color:var(--text-dark); cursor:pointer;">Official Login</button>
+    <button onclick="showLogin('user')" id="user-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; 
+      background:var(--primary-color); color:white; cursor:pointer;">User Login</button>
+    <button onclick="showLogin('official')" id="official-btn" style="padding:0.8rem 2rem; border:none; border-
+      radius:8px; background:#E5E7EB; color:var(--text-dark); cursor:pointer;">Official Login</button>
   </div>
 
   <!-- User Login Form -->
@@ -217,7 +237,8 @@
     <p style="margin-bottom:1rem;">Login with your employee credentials</p>
     <input type="text" placeholder="Employee ID" required />
     <input type="password" placeholder="Password" required />
-    <a href="#" style="font-size:0.85rem; color:var(--primary-color); text-decoration:none; display:block; margin-bottom:0.5rem;">Forgot Password?</a>
+    <a href="#" style="font-size:0.85rem; color:var(--primary-color); text-decoration:none; display:block; margin-
+      bottom:0.5rem;">Forgot Password?</a>
     <button type="submit">Login</button>
   </form>
 </section>
