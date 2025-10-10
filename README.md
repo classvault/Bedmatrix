@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -68,6 +68,8 @@
     .available { background:#DCFCE7; color:#166534; }
     .fewleft { background:#FEF9C3; color:#92400E; }
     .full { background:#FEE2E2; color:#991B1B; }
+
+
 
     /* FAQ */
     .faq-item { max-width:800px; margin:1rem auto; padding:1rem; background: var(--white); border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05);}
