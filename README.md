@@ -372,3 +372,203 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BedMatrix | Hospital & Blood Bank Tracker</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    :root {
+      --primary-color: #3B82F6;
+      --secondary-color: #10B981;
+      --bg-light: #F9FAFB;
+      --text-dark: #1F2937;
+      --text-gray: #4B5563;
+      --white: #FFFFFF;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-light); }
+
+    nav {
+      background: var(--white);
+      padding:1rem 2rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top:0;
+      z-index:1000;
+    }
+    nav h1 { color: var(--primary-color); font-weight:700; font-size:1.6rem; }
+    nav ul { list-style:none; display:flex; gap:1.5rem; }
+    nav ul li a { text-decoration:none; color: var(--text-dark); font-weight:500; cursor:pointer;}
+    nav ul li a:hover { color: var(--primary-color); }
+
+    section { padding: 4rem 2rem; }
+    h2.section-title { text-align:center; font-size:2.2rem; font-weight:700; margin-bottom:2rem; color:var(--text-dark); }
+
+    /* Hero */
+    .hero { text-align:center; padding:6rem 2rem; background: linear-gradient(to right,#E0F2FE,#F0FDFA);}
+    .hero h2 { font-size:2.6rem; font-weight:700; color:var(--text-dark); }
+    .hero p { max-width:700px; margin:1rem auto; color:var(--text-gray); font-size:1.1rem; }
+
+    /* Map */
+    #map { width:100%; height:70vh; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin:2rem 0; }
+
+    /* Chatbot */
+    .chatbot-toggle { position:fixed; bottom:20px; right:20px; background:var(--secondary-color); color:white; border:none;
+      border-radius:50%; width:60px; height:60px; font-size:1.8rem; cursor:pointer; z-index:1001;
+      box-shadow:0 4px 15px rgba(0,0,0,0.2);}
+    .chatbot-container { position:fixed; bottom:90px; right:20px; width:340px; height:420px; background: var(--white);
+      border-radius:16px; box-shadow:0 6px 25px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden;
+      z-index:1002;}
+    .chat-header { background: var(--primary-color); color:white; text-align:center; padding:1rem; font-weight:600; }
+    .chat-body { flex:1; padding:0.8rem; overflow-y:auto; display:flex; flex-direction:column; gap:0.5rem;}
+    .chat-msg { padding:0.6rem 1rem; border-radius:12px; max-width:80%; }
+    .bot-msg { background:#E0F2FE; align-self:flex-start; }
+    .user-msg { background:#DCFCE7; align-self:flex-end; }
+    .chat-input { display:flex; border-top:1px solid #E5E7EB; }
+    .chat-input input { flex:1; border:none; padding:0.8rem; outline:none; }
+    .chat-input button { border:none; background: var(--primary-color); color:white; padding:0 1.2rem; cursor:pointer; }
+
+    footer { background: var(--white); text-align:center; padding:1.5rem; margin-top:2rem; box-shadow:0 -2px 6px rgba(0,0,0,0.1);}
+    footer p { color:#4B5563; font-size:0.95rem; }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h1>🩸 BedMatrix</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#map-section">Map</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <h2>Real-Time Blood Bank & Hospital Availability</h2>
+    <p>Find nearby hospitals and blood banks with available beds and blood units.  
+    Stay informed, stay safe.</p>
+  </section>
+
+  <!-- Map -->
+  <section id="map-section">
+    <h2 class="section-title">🗺️ Live Map: Hospitals & Blood Banks</h2>
+    <div id="map"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <div style="max-width:700px;margin:auto;">
+      <p><b>Is my data private?</b><br>Yes absolutely! While location is public, your personal details (name, contact) are fully confidential.</p><br>
+      <p><b>Is this service available in my city?</b><br>Currently available in Delhi. We’re expanding soon — sign up to get notified!</p>
+    </div>
+  </section>
+
+  <!-- Chatbot -->
+  <button class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+  <div class="chatbot-container" id="chatbot">
+    <div class="chat-header">🤖 BedMatrix Assistant</div>
+    <div class="chat-body" id="chat-body">
+      <div class="chat-msg bot-msg">Hello! 👋 I can help you find hospitals or blood banks nearby.</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Ask something..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <footer><p>© 2025 BedMatrix | Smarter Healthcare & Blood Donation Network</p></footer>
+
+  <!-- JS + Map + Chatbot -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize Map
+    const map = L.map('map').setView([28.6139, 77.2090], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Hospitals
+    const hospitals = [
+      { name: "AIIMS Hospital", lat: 28.5672, lon: 77.2100 },
+      { name: "Fortis Hospital", lat: 28.5562, lon: 77.1000 },
+      { name: "Safdarjung Hospital", lat: 28.5675, lon: 77.2097 },
+      { name: "Max Healthcare", lat: 28.6280, lon: 77.2180 }
+    ];
+
+    // Blood Banks
+    const bloodBanks = [
+      { name: "Delhi Red Cross Blood Bank", lat: 28.6283, lon: 77.2186, group: "A+, O+, B+, AB+" },
+      { name: "AIIMS Blood Bank", lat: 28.5670, lon: 77.2105, group: "A-, B-, O-, AB-" },
+      { name: "Fortis Blood Bank", lat: 28.5555, lon: 77.1010, group: "A+, O+, AB+" }
+    ];
+
+    hospitals.forEach(h =>
+      L.marker([h.lat, h.lon]).addTo(map).bindPopup(`<b>${h.name}</b><br>Hospital in Delhi`)
+    );
+
+    bloodBanks.forEach(b =>
+      L.marker([b.lat, b.lon], { icon: L.icon({
+        iconUrl: "https://cdn-icons-png.flaticon.com/512/2966/2966327.png",
+        iconSize: [32, 32]
+      })}).addTo(map)
+      .bindPopup(`<b>${b.name}</b><br>Available Groups: ${b.group}`)
+    );
+
+    // Chatbot Logic
+    const chatbot = document.getElementById('chatbot');
+    const chatBody = document.getElementById('chat-body');
+    const userInput = document.getElementById('user-input');
+
+    function toggleChatbot() {
+      chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const msg = userInput.value.trim();
+      if (!msg) return;
+      addMessage(msg, 'user');
+      userInput.value = '';
+      setTimeout(() => botReply(msg), 600);
+    }
+
+    function addMessage(msg, sender) {
+      const div = document.createElement('div');
+      div.classList.add('chat-msg', sender === 'bot' ? 'bot-msg' : 'user-msg');
+      div.textContent = msg;
+      chatBody.appendChild(div);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function botReply(input) {
+      input = input.toLowerCase();
+      let reply = "Sorry, I didn’t get that. Try asking about nearby hospitals or blood banks.";
+
+      if (input.includes("hello") || input.includes("hi")) reply = "Hi there! 👋 How can I help — hospitals or blood banks?";
+      else if (input.includes("hospital")) reply = "Nearby hospitals: AIIMS, Fortis, Safdarjung, Max Healthcare.";
+      else if (input.includes("blood bank")) reply = "Nearby blood banks: Red Cross, AIIMS Blood Bank, Fortis Blood Bank.";
+      else if (input.includes("blood availability") || input.includes("blood group")) reply = 
+        "Available groups:\n- Red Cross: A+, O+, B+, AB+\n- AIIMS: A-, B-, O-, AB-\n- Fortis: A+, O+, AB+";
+      else if (input.includes("icu")) reply = "Nearest ICU beds available at Fortis and Max Healthcare.";
+      else if (input.includes("thanks")) reply = "You're most welcome! 💙 Stay safe and healthy.";
+
+      addMessage(reply, 'bot');
+    }
+  </script>
+</body>
+</html>
+
