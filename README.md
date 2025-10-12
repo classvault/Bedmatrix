@@ -645,6 +645,4 @@
 
   </script>
 
-</body>
-</html>
 
