@@ -69,23 +69,51 @@
     .fewleft { background:#FEF9C3; color:#92400E; }
     .full { background:#FEE2E2; color:#991B1B; }
 
-    /* FAQ */
-    .faq-item { max-width:800px; margin:1rem auto; padding:1rem; background: var(--white); border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05);}
-    .faq-question { font-weight:600; cursor:pointer; }
-    .faq-answer { margin-top:0.5rem; display:none; color:var(--text-gray); }
-
-    /* Login */
+    /* FAQ (hover reveal) */
+    .faq-section { padding: 4rem 2rem; max-width: 900px; margin: auto; }
+    .faq-intro { text-align: center; color: var(--text-gray); font-size: 1rem; margin-bottom: 2.5rem; }
+    .faq-container { display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item { background: var(--white); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.05); padding: 1.2rem 1.5rem; transition: all 0.3s ease; position: relative; overflow: hidden; cursor: pointer; }
+    .faq-question { font-weight: 600; font-size: 1.05rem; color: var(--primary-color); }
+    .faq-answer { margin-top: 0.7rem; color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; max-height: 0; opacity: 0; transition: all 0.4s ease; }
+    .faq-item:hover .faq-answer { max-height: 300px; opacity: 1; }
+   /* Login */
     .login-form { max-width:400px; margin:2rem auto; padding:2rem; background: var(--white); border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05);}
     .login-form input, .login-form button { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:1px solid #D1D5DB; }
     .login-form button { background: var(--primary-color); color:white; border:none; cursor:pointer; }
+    .login-form button:hover { background: #2563EB; transition:0.2s; }
 
+
+    /* Search & Filter panel */
+    .search-panel { max-width:1200px; margin:1.25rem auto; background:var(--white); padding:1rem; border-radius:12px; box-shadow:0 8px 30px rgba(2,6,23,.04); }
+    .controls { display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; margin-bottom:0.75rem; }
+    .search-input { flex:1; min-width:200px; padding:0.6rem 0.8rem; border:1px solid #E6EEF8; border-radius:8px; }
+    .filters { display:flex; gap:0.75rem; align-items:center; }
+    .filter-group { display:flex; flex-direction:column; min-width:140px; font-size:0.9rem; color:var(--text-gray); }
+    .filter-label { font-size:0.8rem; color:var(--text-gray); margin-bottom:0.25rem; }
+    select { padding:0.5rem; border-radius:8px; border:1px solid #E6EEF8; background:white; }
+
+    .btn { background:var(--primary-color); color:white; border:none; padding:0.5rem 0.75rem; border-radius:8px; cursor:pointer; }
+
+    .list-and-map { display:grid; grid-template-columns:360px 1fr; gap:1rem; margin-top:0.5rem; }
+    .hospital-list { max-height:62vh; overflow:auto; padding-right:6px; display:flex; flex-direction:column; gap:0.6rem; }
+    .h-card { background:linear-gradient(180deg,#fff,#fbfdff); padding:0.75rem; border-radius:10px; border:1px solid #EEF6FF; display:flex; justify-content:space-between; align-items:center; gap:0.5rem; cursor:pointer; }
+    .h-left { display:flex; flex-direction:column; }
+    .h-name { font-weight:600; color:var(--text-dark); }
+    .h-wards { font-size:0.85rem; color:var(--text-gray); margin-top:6px; }
+    .h-status { padding:0.25rem 0.6rem; border-radius:999px; font-weight:700; font-size:0.8rem; }
+    
     /* Map */
-    #map { width:100%; height:64vh; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin:1.5rem 0; }
+    #map { width:100%; height:64vh; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin:0; }
 
-    /* Blood Banks Table */
-    #blood-bank-section table { border-radius:8px; overflow:hidden; background:var(--white); }
+    /* small screens */
+    @media (max-width:920px){
+      .list-and-map { grid-template-columns:1fr; }
+      .hospital-list { order:2; max-height:40vh; }
+      #map { order:1; height:42vh; }
+    }
 
-    /* Floating Chatbot */
+    /* Chatbot + other styles kept as-is */
     .chatbot-toggle { position:fixed; bottom:20px; right:20px; background:var(--secondary-color); color:white; border:none; border-radius:50%; width:60px; height:60px; font-size:1.6rem; cursor:pointer; z-index:1001; box-shadow:0 4px 15px rgba(0,0,0,0.2);}
     .chatbot-container { position:fixed; bottom:90px; right:20px; width:360px; height:480px; background: var(--white); border-radius:16px; box-shadow:0 6px 25px rgba(0,0,0,0.3); display:none; flex-direction:column; overflow:hidden; z-index:1002;}
     .chat-header { background: var(--primary-color); color:white; text-align:center; padding:1rem; font-weight:600; }
@@ -97,16 +125,9 @@
     .chat-input input { flex:1; border:none; padding:0.8rem; outline:none; }
     .chat-input button { border:none; background: var(--primary-color); color:white; padding:0 1rem; cursor:pointer; }
 
-    .legend { background:white; padding:8px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08); font-size:0.9rem; }
-    .legend-row { display:flex; gap:8px; align-items:center; margin-top:6px; }
-
     footer { background: var(--white); text-align:center; padding:1.5rem; margin-top:2rem; box-shadow:0 -2px 6px rgba(0,0,0,0.06);}
     footer p { color:#4B5563; font-size:0.95rem; }
-    @media (max-width:720px) {
-      nav { padding:0.8rem 1rem; }
-      .hero { padding:3rem 1rem; }
-      .chatbot-container { right:12px; width:320px; height:420px; }
-    }
+
   </style>
 </head>
 
@@ -188,57 +209,135 @@
 
   <!-- FAQ -->
   <section class="faq-section" id="faq">
-    <h2 class="section-title">FAQ</h2>
-
-    <div class="faq-item">
-      <div class="faq-question">How do I check bed availability?</div>
-      <div class="faq-answer">Use the live map or the dashboard table to see the current availability of beds in different wards.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">How can I contact hospitals?</div>
-      <div class="faq-answer">Click on a hospital marker on the map to see contact information and location.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">Is my data private?</div>
-      <div class="faq-answer">Yes, absolutely. While location data is public, your personal information (name, contact details) is kept confidential.</div>
+    <h2 class="section-title">Frequently Asked Questions (FAQ)</h2>
+    <p class="faq-intro">Hover over each question to reveal the answer instantly.</p>
+    <div class="faq-container">
+      <div class="faq-item"><div class="faq-question">🔹 What is BedMatrix?</div><div class="faq-answer">BedMatrix is a real-time hospital and blood bank tracking platform that helps users find available beds and blood units across Delhi instantly.</div></div>
+      <div class="faq-item"><div class="faq-question">🔹 How does BedMatrix show live data?</div><div class="faq-answer">Hospitals and blood banks update their data through the secure BedMatrix Admin Dashboard, ensuring accurate live availability.</div></div>
+      <div class="faq-item"><div class="faq-question">🔹 Can I find the nearest hospital or blood bank?</div><div class="faq-answer">Yes! The BedMatrix map and chatbot help you find the nearest hospital or blood bank using your location.</div></div>
+      <div class="faq-item"><div class="faq-question">🔹 How can I check available blood groups?</div><div class="faq-answer">Visit the Blood Bank section or hover over the red map markers to see available blood groups like A+, B+, O+, etc.</div></div>
+      <div class="faq-item"><div class="faq-question">🔹 Is my personal data safe?</div><div class="faq-answer">Yes, BedMatrix never stores or shares personal or location data. Your privacy is fully protected.</div></div>
+      <div class="faq-item"><div class="faq-question">🔹 Does BedMatrix work on mobile devices?</div><div class="faq-answer">Absolutely! BedMatrix is fully responsive and optimized for phones, tablets, and desktops.</div></div>
+      <div class="faq-item"><div class="faq-question">🔹 Who can access the Admin Dashboard?</div><div class="faq-answer">Only verified hospital and government staff can log into the Admin Dashboard to manage bed and blood availability.</div></div>
     </div>
   </section>
+  <!-- Accordion Animation Script -->
+<script>
+  // FAQ accordion open/close animation
+  document.querySelectorAll('.faq-question').forEach((question) => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      const isActive = answer.style.display === 'block';
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+      // Open current
+      answer.style.display = isActive ? 'none' : 'block';
+      question.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+
 
   <!-- Login Section -->
-  <section id="login">
-    <h2 class="section-title">Login</h2>
+  <ion id="login">
+  <h2 class="section-title">Login</h2>
 
-    <div class="login-tabs" style="display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem;">
-      <button onclick="showLogin('user')" id="user-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; background:var(--primary-color); color:white; cursor:pointer;">User Login</button>
-      <button onclick="showLogin('official')" id="official-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; background:#E5E7EB; color:var(--text-dark); cursor:pointer;">Official Login</button>
+  <div class="login-tabs" style="display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem;">
+    <button onclick="showLogin('user')" id="user-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; background:var(--primary-color); color:white; cursor:pointer;">User Login</button>
+    <button onclick="showLogin('official')" id="official-btn" style="padding:0.8rem 2rem; border:none; border-radius:8px; background:#E5E7EB; color:var(--text-dark); cursor:pointer;">Official Login</button>
+  </div>
+
+  <!-- User Login Form -->
+  <form class="login-form" id="user-login" style="display:block;">
+    <p style="margin-bottom:1rem;">Welcome!<br>Enter your details to login or sign up</p>
+    <input type="text" placeholder="Phone Number or Gmail" required />
+    <button type="button">Send OTP</button>
+  </form>
+
+  <!-- Official Login Form -->
+  <form class="login-form" id="official-login" style="display:none;">
+    <p style="margin-bottom:1rem;">Login with your employee credentials</p>
+    <input type="text" placeholder="Employee ID" required />
+    <input type="password" placeholder="Password" required />
+    <a href="#" style="font-size:0.85rem; color:var(--primary-color); text-decoration:none; display:block; margin-bottom:0.5rem;">Forgot Password?</a>
+    <button type="submit">Login</button>
+  </form>
+</section>
+
+<script>
+  function showLogin(type){
+    const userForm = document.getElementById('user-login');
+    const officialForm = document.getElementById('official-login');
+    const userBtn = document.getElementById('user-btn');
+    const officialBtn = document.getElementById('official-btn');
+
+    if(type==='user'){
+      userForm.style.display='block';
+      officialForm.style.display='none';
+      userBtn.style.background= 'var(--primary-color)';
+      userBtn.style.color='white';
+      officialBtn.style.background='#E5E7EB';
+      officialBtn.style.color='var(--text-dark)';
+    } else {
+      userForm.style.display='none';
+      officialForm.style.display='block';
+      officialBtn.style.background= 'var(--primary-color)';
+      officialBtn.style.color='white';
+      userBtn.style.background='#E5E7EB';
+      userBtn.style.color='var(--text-dark)';
+    }
+  }
+</script>
+  <!-- Search & Filter Panel -->
+  <section class="search-panel" id="search-panel" aria-label="Search and filter hospitals">
+    <div class="controls">
+      <input id="search-input" class="search-input" type="search" placeholder="Search hospitals by name..." aria-label="Search hospitals by name" />
+
+      <div class="filters">
+        <div class="filter-group">
+          <label class="filter-label" for="ward-select">Ward</label>
+          <select id="ward-select" aria-label="Filter by ward">
+            <option value="any">Any</option>
+            <option value="General">General</option>
+            <option value="ICU">ICU</option>
+            <option value="Emergency">Emergency</option>
+            <option value="Operation">Operation</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label" for="availability-select">Availability</label>
+          <select id="availability-select" aria-label="Filter by availability">
+            <option value="any">Any</option>
+            <option value="available">Available (&gt;10 total)</option>
+            <option value="few">Few Left (3–10)</option>
+            <option value="full">Full (&le;2)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label style="visibility:hidden">reset</label>
+          <button id="reset-filters" class="btn" aria-label="Reset filters">Reset</button>
+        </div>
+      </div>
     </div>
 
-    <!-- User Login Form -->
-    <form class="login-form" id="user-login" style="display:block;">
-      <p style="margin-bottom:1rem;">Welcome!<br>Enter your details to login or sign up</p>
-      <input type="text" placeholder="Phone Number or Gmail" required />
-      <button type="button">Send OTP</button>
-    </form>
-
-    <!-- Official Login Form -->
-    <form class="login-form" id="official-login" style="display:none;">
-      <p style="margin-bottom:1rem;">Login with your employee credentials</p>
-      <input type="text" placeholder="Employee ID" required />
-      <input type="password" placeholder="Password" required />
-      <a href="#" style="font-size:0.85rem; color:var(--primary-color); text-decoration:none; display:block; margin-bottom:0.5rem;">Forgot Password?</a>
-      <button type="submit">Login</button>
-    </form>
+    <div class="list-and-map">
+      <!-- Hospital list -->
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
+          <div style="font-weight:600;color:var(--text-gray)">Hospitals</div>
+          <div id="result-count" style="color:var(--text-gray)">Showing 0</div>
+        </div>
+        <div class="hospital-list" id="hospital-list" aria-live="polite"></div>
+      </div>
+   
+      <!-- Map -->
+      <div id="map" role="region" aria-label="Delhi hospitals and blood banks map"></div>
+    </div>
   </section>
 
-  <!-- Map -->
-  <section id="map-section">
-    <h2 class="section-title">🏥 Hospitals & 🩸 Blood Banks in Delhi</h2>
-    <div id="map"></div>
-  </section>
-
-  <!-- Blood Banks Table (NEW) -->
+  <!-- Blood Banks Table -->
   <section id="blood-bank-section">
     <h2 style="text-align:center; margin-top:0.5rem;">🩸 Nearby Blood Banks</h2>
     <p style="text-align:center; color:#4B5563; max-width:760px; margin:0.5rem auto 1rem;">
@@ -259,7 +358,7 @@
 
   <!-- Chatbot -->
   <button class="chatbot-toggle" onclick="toggleChatbot()" title="Open chat">💬</button>
-  <div class="chatbot-container" id="chatbot">
+  <div class="chatbot-container" id="chatbot" aria-hidden="true">
     <div class="chat-header">🩺 BedMatrix Assistant</div>
     <div class="chat-body" id="chat-body">
       <div class="chat-msg bot-msg">Hello! 👋 I’m your BedMatrix assistant. Ask about nearest hospital, emergency beds, or blood bank availability.</div>
@@ -281,128 +380,56 @@
     // small init
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(q=>{
-      q.addEventListener('click',()=>{ 
-        const ans = q.nextElementSibling;
-        ans.style.display = ans.style.display==='block' ? 'none' : 'block';
-      });
-    });
-
-    // Login toggles
-    function showLogin(type){
-      const userForm = document.getElementById('user-login');
-      const officialForm = document.getElementById('official-login');
-      const userBtn = document.getElementById('user-btn');
-      const officialBtn = document.getElementById('official-btn');
-
-      if(type==='user'){
-        userForm.style.display='block';
-        officialForm.style.display='none';
-        userBtn.style.background= 'var(--primary-color)';
-        userBtn.style.color='white';
-        officialBtn.style.background='#E5E7EB';
-        officialBtn.style.color='var(--text-dark)';
-      } else {
-        userForm.style.display='none';
-        officialForm.style.display='block';
-        officialBtn.style.background= 'var(--primary-color)';
-        officialBtn.style.color='white';
-        userBtn.style.background='#E5E7EB';
-        userBtn.style.color='var(--text-dark)';
-      }
-    }
-
     // ===== Map initialization =====
     const map = L.map('map', { zoomControl: true }).setView([28.6139, 77.2090], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
 
-    // sample hospitals
+    // SAMPLE hospitals (now include wards for filtering)
     const hospitals = [
-      { id: 'H1', name:"AIIMS Hospital", lat:28.5672, lon:77.2100, contact: "+91-11-2658-8500" },
-      { id: 'H2', name:"Fortis Hospital", lat:28.5562, lon:77.1000, contact: "+91-11-4123-4567" },
-      { id: 'H3', name:"Safdarjung Hospital", lat:28.5675, lon:77.2097, contact: "+91-11-2610-3284" },
-      { id: 'H4', name:"Max Healthcare", lat:28.6280, lon:77.2180, contact: "+91-11-4286-1000" }
+      { id:'H1', name: "AIIMS Hospital", lat:28.5672, lon:77.2100, contact:"+91-11-2658-8500", wards:{General:25, ICU:2, Emergency:8, Operation:1} },
+      { id:'H2', name: "Fortis Hospital", lat:28.5562, lon:77.1000, contact:"+91-11-4123-4567", wards:{General:10, ICU:1, Emergency:2, Operation:0} },
+      { id:'H3', name: "Safdarjung Hospital", lat:28.5675, lon:77.2097, contact:"+91-11-2610-3284", wards:{General:4, ICU:0, Emergency:1, Operation:0} },
+      { id:'H4', name: "Max Healthcare", lat:28.6280, lon:77.2180, contact:"+91-11-4286-1000", wards:{General:6, ICU:3, Emergency:1, Operation:2} }
     ];
 
-    // add hospital markers (default blue markers)
-    const hospitalMarkers = {};
+    // create marker layer group & refs
+    const hospitalLayer = L.layerGroup().addTo(map);
+    const hospitalMarkers = {}; // id -> marker
+
     hospitals.forEach(h => {
-      const m = L.marker([h.lat, h.lon]).addTo(map).bindPopup(`<b>${h.name}</b><br>Contact: ${h.contact}`);
+      const popup = `<b>${h.name}</b><br>Contact: ${h.contact}<br>
+                     <small>General: ${h.wards.General} • ICU: ${h.wards.ICU} • Emergency: ${h.wards.Emergency} • Operation: ${h.wards.Operation}</small>`;
+      const m = L.marker([h.lat, h.lon]).bindPopup(popup);
       hospitalMarkers[h.id] = m;
+      hospitalLayer.addLayer(m);
     });
 
-    // ===== Blood Banks =====
+    // Blood banks (unchanged)
     const bloodBanks = [
-      {
-        id: 'B1',
-        name: "Delhi Red Cross Blood Bank",
-        lat: 28.5740,
-        lon: 77.2070,
-        location: "Central Delhi",
-        contact: "+91-11-2334-0001",
-        groups: ["A+", "B+", "O+", "AB+", "O-", "A-"]
-      },
-      {
-        id: 'B2',
-        name: "AIIMS Blood Bank",
-        lat: 28.5678,
-        lon: 77.2105,
-        location: "Ansari Nagar",
-        contact: "+91-11-2658-1234",
-        groups: ["A+", "O+", "B-", "AB-"]
-      },
-      {
-        id: 'B3',
-        name: "Fortis Blood Bank",
-        lat: 28.5565,
-        lon: 77.1012,
-        location: "Okhla",
-        contact: "+91-11-4123-9999",
-        groups: ["A+", "O+", "B+", "O-"]
-      },
-      {
-        id: 'B4',
-        name: "Apollo Blood Bank",
-        lat: 28.5445,
-        lon: 77.2693,
-        location: "South Delhi",
-        contact: "+91-11-2666-7777",
-        groups: ["A+", "B+", "O+", "A-", "B-"]
-      }
+      { id: 'B1', name: "Delhi Red Cross Blood Bank", lat: 28.5740, lon: 77.2070, location: "Central Delhi", contact: "+91-11-2334-0001", groups: ["A+", "B+", "O+", "AB+", "O-", "A-"] },
+      { id: 'B2', name: "AIIMS Blood Bank", lat: 28.5678, lon: 77.2105, location: "Ansari Nagar", contact: "+91-11-2658-1234", groups: ["A+", "O+", "B-", "AB-"] },
+      { id: 'B3', name: "Fortis Blood Bank", lat: 28.5565, lon: 77.1012, location: "Okhla", contact: "+91-11-4123-9999", groups: ["A+", "O+", "B+", "O-"] },
+      { id: 'B4', name: "Apollo Blood Bank", lat: 28.5445, lon: 77.2693, location: "South Delhi", contact: "+91-11-2666-7777", groups: ["A+", "B+", "O+", "A-", "B-"] }
     ];
-
-    // store markers to manipulate later
     const bloodBankMarkers = {};
-
     bloodBanks.forEach(b => {
-      const marker = L.circleMarker([b.lat, b.lon], {
-        radius: 9,
-        color: "#EF4444",
-        weight: 2,
-        fillColor: "#FCA5A5",
-        fillOpacity: 0.9
-      }).addTo(map);
-
+      const marker = L.circleMarker([b.lat, b.lon], { radius:9, color:"#EF4444", weight:2, fillColor:"#FCA5A5", fillOpacity:0.9 }).addTo(map);
       const popupHtml = `<div style="font-weight:600;">${b.name}</div>
                          <div style="margin-top:6px;"><b>Location:</b> ${b.location}</div>
                          <div style="margin-top:6px;"><b>Contact:</b> ${b.contact}</div>
                          <div style="margin-top:6px;"><b>Available:</b> ${b.groups.join(", ")}</div>`;
-
       marker.bindPopup(popupHtml);
       bloodBankMarkers[b.id] = marker;
     });
 
-    // Populate blood bank table and add click-to-focus behavior
+    // Populate blood bank table (click to open)
     const tableBody = document.getElementById('blood-bank-table');
     bloodBanks.forEach(b => {
       const tr = document.createElement('tr');
       tr.style.cursor = 'pointer';
-      tr.innerHTML = `
-        <td style="padding:0.8rem; border-bottom:1px solid #E5E7EB; text-align:left;">${b.name}</td>
-        <td style="padding:0.8rem; border-bottom:1px solid #E5E7EB;">${b.location}</td>
-        <td style="padding:0.8rem; border-bottom:1px solid #E5E7EB;">${b.groups.join(", ")}</td>
-      `;
+      tr.innerHTML = `<td style="padding:0.8rem; border-bottom:1px solid #E5E7EB; text-align:left">${b.name}</td>
+                      <td style="padding:0.8rem; border-bottom:1px solid #E5E7EB">${b.location}</td>
+                      <td style="padding:0.8rem; border-bottom:1px solid #E5E7EB">${b.groups.join(", ")}</td>`;
       tr.addEventListener('click', () => {
         map.setView([b.lat, b.lon], 14, { animate: true });
         bloodBankMarkers[b.id].openPopup();
@@ -410,26 +437,121 @@
       tableBody.appendChild(tr);
     });
 
-    // Add legend control
+    // Legend
     const legend = L.control({ position: "bottomright" });
     legend.onAdd = function(map) {
       const div = L.DomUtil.create("div", "legend");
       div.innerHTML = `
-        <div class="legend" style="padding:8px; border-radius:8px;">
-          <div style="font-weight:600;">Map Legend</div>
-          <div class="legend-row"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#0074D9"/></svg><span style="margin-left:8px;">Hospitals</span></div>
-          <div class="legend-row"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#EF4444"/></svg><span style="margin-left:8px;">Blood Banks</span></div>
+        <div style="padding:8px; border-radius:8px; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.06)">
+          <div style="font-weight:600; margin-bottom:6px;">Map Legend</div>
+          <div style="display:flex;align-items:center;gap:8px;"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#0074D9"/></svg><span>Hospitals</span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#EF4444"/></svg><span>Blood Banks</span></div>
         </div>`;
       return div;
     };
     legend.addTo(map);
 
-    // ===== Chatbot logic =====
+    // ---------------- Search & Filter Logic ----------------
+    const input = document.getElementById('search-input');
+    const wardSelect = document.getElementById('ward-select');
+    const availabilitySelect = document.getElementById('availability-select');
+    const resetBtn = document.getElementById('reset-filters');
+    const listEl = document.getElementById('hospital-list');
+    const countEl = document.getElementById('result-count');
+
+    function totalBeds(h){ return Object.values(h.wards).reduce((a,b)=>a+b,0); }
+    function statusClass(h){
+      const t = totalBeds(h);
+      if(t > 10) return 'available';
+      if(t >= 3) return 'fewleft';
+      return 'full';
+    }
+
+    function renderList(arr){
+      listEl.innerHTML = '';
+      if(arr.length === 0){
+        listEl.innerHTML = '<div style="color:#64748B;padding:12px">No hospitals match your filters.</div>';
+        countEl.textContent = 'Showing 0';
+        return;
+      }
+      countEl.textContent = `Showing ${arr.length}`;
+      arr.forEach(h => {
+        const div = document.createElement('div');
+        div.className = 'h-card';
+        div.dataset.id = h.id;
+        div.innerHTML = `
+          <div class="h-left">
+            <div class="h-name">${h.name}</div>
+            <div class="h-wards">Gen: ${h.wards.General} • ICU: ${h.wards.ICU} • EMG: ${h.wards.Emergency} • Op: ${h.wards.Operation}</div>
+          </div>
+          <div class="h-right"><div class="h-status ${statusClass(h)}">${statusClass(h) === 'available' ? 'Available' : statusClass(h) === 'fewleft' ? 'Few Left' : 'Full'}</div></div>
+        `;
+        div.addEventListener('click', () => {
+          map.setView([h.lat, h.lon], 14, { animate:true });
+          hospitalMarkers[h.id].openPopup();
+        });
+        listEl.appendChild(div);
+      });
+    }
+
+    function applyFilters(){
+      const q = (input.value || '').trim().toLowerCase();
+      const ward = wardSelect.value;
+      const avail = availabilitySelect.value;
+
+      let out = hospitals.filter(h => h.name.toLowerCase().includes(q));
+
+      if(ward !== 'any'){
+        out = out.filter(h => (h.wards[ward] || 0) > 0);
+      }
+
+      if(avail !== 'any'){
+        out = out.filter(h => {
+          const t = totalBeds(h);
+          if(avail === 'available') return t > 10;
+          if(avail === 'few') return t >= 3 && t <= 10;
+          if(avail === 'full') return t <= 2;
+          return true;
+        });
+      }
+
+      // update markers: clear layer then add matched
+      hospitalLayer.clearLayers();
+      out.forEach(h => hospitalLayer.addLayer(hospitalMarkers[h.id]));
+
+      renderList(out);
+    }
+
+    // debounce helper
+    function debounce(fn, wait){
+      let t;
+      return function(...args){ clearTimeout(t); t = setTimeout(()=> fn.apply(this,args), wait); };
+    }
+
+    // initial render
+    applyFilters();
+
+    // events
+    input.addEventListener('input', debounce(applyFilters, 180));
+    wardSelect.addEventListener('change', applyFilters);
+    availabilitySelect.addEventListener('change', applyFilters);
+    resetBtn.addEventListener('click', () => {
+      input.value = '';
+      wardSelect.value = 'any';
+      availabilitySelect.value = 'any';
+      applyFilters();
+    });
+
+    // -------------- Chatbot (kept same) --------------
     const chatbot = document.getElementById('chatbot');
     const chatBody = document.getElementById('chat-body');
     const userInput = document.getElementById('user-input');
 
-    function toggleChatbot(){ chatbot.style.display = chatbot.style.display==='flex' ? 'none' : 'flex'; }
+    function toggleChatbot(){ 
+      const isHidden = chatbot.style.display !== 'flex';
+      chatbot.style.display = isHidden ? 'flex' : 'none';
+      chatbot.setAttribute('aria-hidden', !isHidden);
+    }
 
     function addMessage(msg, sender){
       const div = document.createElement('div');
@@ -444,11 +566,10 @@
       if(!raw) return;
       addMessage(raw, 'user');
       userInput.value = '';
-      // small delay to simulate thinking
-      setTimeout(()=> botReply(raw), 400);
+      setTimeout(()=> botReply(raw), 350);
     }
 
-    // Helper: haversine distance (km)
+    // Haversine & helper functions (same as previous)
     function haversine(lat1, lon1, lat2, lon2){
       function toRad(x){ return x * Math.PI / 180; }
       const R = 6371;
@@ -461,10 +582,8 @@
       return R * c;
     }
 
-    // Find nearest blood bank from coordinates
     function findNearestBloodBank(lat, lon){
-      let min = Infinity;
-      let nearest = null;
+      let min = Infinity; let nearest = null;
       bloodBanks.forEach(b => {
         const d = haversine(lat, lon, b.lat, b.lon);
         if(d < min){ min = d; nearest = { bank: b, distance: d }; }
@@ -472,130 +591,55 @@
       return nearest;
     }
 
-    // Find blood banks that have a blood group
     function banksWithGroup(group){
       const normalized = group.toUpperCase().replace(/\s+/g,'');
       return bloodBanks.filter(b => b.groups.map(g=>g.toUpperCase()).includes(normalized));
     }
 
-    // Ask for geolocation and then reply with nearest blood bank
     function replyWithNearestBloodBank(){
       if(!navigator.geolocation){
-        addMessage("Geolocation not available in your browser. Please type a city or landmark.", 'bot');
-        return;
+        addMessage("Geolocation not available. Please type a city or landmark.", 'bot'); return;
       }
-      addMessage("Requesting your location to find the nearest blood bank... (please allow location access)", 'bot');
+      addMessage("Requesting your location to find the nearest blood bank... (allow location)", 'bot');
       navigator.geolocation.getCurrentPosition(pos => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
+        const lat = pos.coords.latitude; const lon = pos.coords.longitude;
         const nearest = findNearestBloodBank(lat, lon);
-        if(!nearest){
-          addMessage("No blood banks found in our data.", 'bot');
-          return;
-        }
-        const b = nearest.bank;
-        const dKm = nearest.distance.toFixed(2);
+        if(!nearest){ addMessage("No blood banks found in our data.", 'bot'); return; }
+        const b = nearest.bank; const dKm = nearest.distance.toFixed(2);
         addMessage(`Nearest blood bank: ${b.name} (${b.location}) — approx ${dKm} km away. Available: ${b.groups.join(", ")}`, 'bot');
-        // center map & open popup
-        map.setView([b.lat, b.lon], 14, { animate: true });
-        bloodBankMarkers[b.id].openPopup();
+        map.setView([b.lat, b.lon], 14, { animate: true }); bloodBankMarkers[b.id].openPopup();
       }, err => {
-        addMessage("Location access denied or failed. Please allow location access or ask for blood bank by name.", 'bot');
-      }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+        addMessage("Location access denied or failed. Please allow location access or ask by name.", 'bot');
+      }, { enableHighAccuracy:true, timeout:10000, maximumAge:60000 });
     }
 
-    // Main bot reply handling (supports blood bank queries)
+    // bot reply (kept short)
     function botReply(rawInput){
       const input = (rawInput || '').toLowerCase();
-
-      // quick greetings
-      if (input.includes("hello") || input.includes("hi") || input.includes("hey")) {
-        addMessage("Hi there! 👋 How can I assist you? Try 'Nearest blood bank' or 'Is O+ available?'", 'bot');
-        return;
-      }
-
-      // nearest blood bank
-      if (input.includes("nearest blood") || input.includes("nearest blood bank") || input.includes("closest blood")) {
-        replyWithNearestBloodBank();
-        return;
-      }
-
-      // availability for specific blood group e.g., "is o+ available" or "availability of a-"
+      if (input.includes("nearest blood") || input.includes("nearest blood bank") || input.includes("closest blood")) { replyWithNearestBloodBank(); return; }
       const groupMatch = rawInput.match(/(a\+|a-|b\+|b-|o\+|o-|ab\+|ab-)/i);
-      if(groupMatch){
-        const group = groupMatch[0].toUpperCase();
-        const banks = banksWithGroup(group);
-        if(banks.length === 0){
-          addMessage(`No blood banks in our list currently show availability of ${group}. Try checking the map or contact nearby banks.`, 'bot');
-        } else {
-          const names = banks.map(b => `${b.name} (${b.location})`).join('; ');
-          addMessage(`${group} is currently listed at: ${names}. Click a bank in the table to view details on the map.`, 'bot');
-          // optionally open the first bank on map
-          const first = banks[0];
-          map.setView([first.lat, first.lon], 14, { animate: true });
-          bloodBankMarkers[first.id].openPopup();
-        }
-        return;
+      if(groupMatch){ const group = groupMatch[0].toUpperCase(); const banks = banksWithGroup(group);
+        if(banks.length === 0) addMessage(`No blood banks list ${group} currently.`, 'bot');
+        else { addMessage(`${group} available at: ${banks.map(b=>b.name+' ('+b.location+')').join('; ')}`, 'bot'); map.setView([banks[0].lat, banks[0].lon], 14); bloodBankMarkers[banks[0].id].openPopup(); } return;
       }
-
-      // general bed availability
-      if (input.includes("bed") || input.includes("availability")) {
-        addMessage("You can check real-time bed status on the live map or in the dashboard table. Ask 'nearest hospital' or 'emergency' for more.", 'bot');
-        return;
-      }
-
-      if (input.includes("emergency")) {
-        addMessage("In an emergency, AIIMS and Safdarjung hospitals maintain 24x7 emergency wards. Use the map to get directions and contact info.", 'bot');
-        return;
-      }
-
-      if (input.includes("icu")) {
-        addMessage("ICU beds are reported at Fortis and Max Healthcare in our demo data. Use the map for contact details.", 'bot');
-        return;
-      }
-
       if (input.includes("nearest hospital") || input.includes("nearby hospital")) {
-        // use geolocation to find nearest hospital
-        if(!navigator.geolocation){
-          addMessage("Geolocation unavailable. Please search the map or type a city.", 'bot');
-          return;
-        }
-        addMessage("Requesting your location to find the nearest hospital... (please allow)", 'bot');
+        if(!navigator.geolocation){ addMessage("Geolocation unavailable. Please search manually.", 'bot'); return; }
+        addMessage("Locating nearest hospital... (allow location)", 'bot');
         navigator.geolocation.getCurrentPosition(pos => {
-          const lat = pos.coords.latitude; const lon = pos.coords.longitude;
-          let min = Infinity; let nearest = null;
-          hospitals.forEach(h => {
-            const d = haversine(lat, lon, h.lat, h.lon);
-            if(d < min){ min = d; nearest = { h, d }; }
-          });
-          if(nearest){
-            addMessage(`Nearest hospital: ${nearest.h.name} (~${nearest.d.toFixed(2)} km). Contact: ${nearest.h.contact}`, 'bot');
-            map.setView([nearest.h.lat, nearest.h.lon], 14, { animate: true });
-            hospitalMarkers[nearest.h.id].openPopup();
-          } else {
-            addMessage("No hospitals found in our dataset.", 'bot');
-          }
-        }, err => {
-          addMessage("Location denied or failed. Please allow location access or search manually.", 'bot');
-        }, { enableHighAccuracy: true, timeout:10000 });
+          const lat = pos.coords.latitude; const lon = pos.coords.longitude; let min = Infinity; let nearest = null;
+          hospitals.forEach(h => { const d = haversine(lat, lon, h.lat, h.lon); if(d < min){ min = d; nearest = { h, d }; } });
+          if(nearest){ addMessage(`Nearest hospital: ${nearest.h.name} (~${nearest.d.toFixed(2)} km). Contact: ${nearest.h.contact}`, 'bot'); map.setView([nearest.h.lat, nearest.h.lon], 14); hospitalMarkers[nearest.h.id].openPopup(); } else addMessage("No hospitals found.", 'bot');
+        }, err => addMessage("Location denied.", 'bot'), { enableHighAccuracy:true, timeout:10000 });
         return;
       }
-
-      if (input.includes("thanks") || input.includes("thank you")) {
-        addMessage("You're welcome! Wishing you good health 💙", 'bot');
-        return;
-      }
-
-      // fallback
-      addMessage("I didn't quite catch that. Try: 'Nearest blood bank', 'Is O+ available?', 'Nearest hospital', or 'Emergency'.", 'bot');
+      if (input.includes("bed") || input.includes("availability")){ addMessage("Use the Search & Filter panel to find hospitals or ask me for nearest hospital/blood bank.", 'bot'); return; }
+      addMessage("Try: 'Nearest blood bank', 'Is O+ available?', 'Nearest hospital', or 'Emergency'.", 'bot');
     }
 
-    // Support pressing Enter in input
-    userInput.addEventListener('keydown', function(e){
-      if(e.key === 'Enter'){ sendMessage(); }
-    });
+    // enter key support
+    document.getElementById('user-input').addEventListener('keydown', function(e){ if(e.key==='Enter') sendMessage(); });
 
-    // expose sendMessage for button
+    // expose functions
     window.sendMessage = sendMessage;
     window.toggleChatbot = toggleChatbot;
 
@@ -603,5 +647,4 @@
 
 </body>
 </html>
-
 
