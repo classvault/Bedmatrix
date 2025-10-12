@@ -135,7 +135,7 @@
 
   <!-- Navbar -->
   <nav>
-    <h1>🛏️</h1>
+    <h1></h1>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#features">Features</a></li>
