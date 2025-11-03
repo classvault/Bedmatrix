@@ -142,6 +142,7 @@
       <li><a href="#dashboard">Dashboard</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#login">Login</a></li>
+      <li><a href="#opd-booking">OPD Booking</a></li>
       <li><a href="#map-section">Map</a></li>
       <li><a href="#blood-bank-section">Blood Banks</a></li>
     </ul>
@@ -179,7 +180,7 @@
       </div>
 
       <!-- NEW: Blood Bank Locator feature card -->
-      <div class="feature-card">
+  <div class="feature-card">
         <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" class="feature-icon" alt="blood-bank" />
         <h3 class="feature-title">Blood Bank Locator</h3>
         <p class="feature-desc">Find nearest blood banks and check available blood groups instantly.</p>
@@ -288,12 +289,49 @@
     }
   }
 </script>
+<section id="opd-booking" style="padding:3rem 2rem; background:#F9FAFB;">
+  <h2 class="section-title">Book Your OPD Appointment</h2>
+  <p style="text-align:center; color:#4B5563; margin-bottom:1.5rem;">
+    Select hospital, department, and pay securely via Paytm.
+  </p>
+
+  <form id="opdForm" style="max-width:480px; margin:0 auto; background:white; padding:2rem; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.05);">
+    <label>Full Name</label>
+    <input type="text" id="patientName" required placeholder="Enter your full name" style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid #D1D5DB;">
+
+  <label>Select Hospital</label>
+    <select id="hospitalSelect" required style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid #D1D5DB;">
+      <option value="">-- Choose Hospital --</option>
+      <option value="AIIMS">AIIMS Hospital</option>
+      <option value="Fortis">Fortis Hospital</option>
+      <option value="Max">Max Healthcare</option>
+    </select>
+
+  <label>Department</label>
+    <select id="departmentSelect" required style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid #D1D5DB;">
+      <option value="">-- Select Department --</option>
+      <option value="General Medicine">General Medicine</option>
+      <option value="Cardiology">Cardiology</option>
+      <option value="Dermatology">Dermatology</option>
+      <option value="Orthopedics">Orthopedics</option>
+    </select>
+
+  <label>Appointment Date</label>
+    <input type="date" id="appointmentDate" required style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid #D1D5DB;">
+
+  <label>Consultation Fee (₹)</label>
+    <input type="number" id="fee" required value="500" readonly style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid #D1D5DB;">
+
+  <button type="button" onclick="initiatePayment()" style="width:100%; padding:0.9rem; background:#3B82F6; color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">Pay & Confirm Booking</button>
+  </form>
+</section>
+
   <!-- Search & Filter Panel -->
   <section class="search-panel" id="search-panel" aria-label="Search and filter hospitals">
     <div class="controls">
       <input id="search-input" class="search-input" type="search" placeholder="Search hospitals by name..." aria-label="Search hospitals by name" />
 
-      <div class="filters">
+  <div class="filters">
         <div class="filter-group">
           <label class="filter-label" for="ward-select">Ward</label>
           <select id="ward-select" aria-label="Filter by ward">
@@ -305,7 +343,7 @@
           </select>
         </div>
 
-        <div class="filter-group">
+  <div class="filter-group">
           <label class="filter-label" for="availability-select">Availability</label>
           <select id="availability-select" aria-label="Filter by availability">
             <option value="any">Any</option>
@@ -315,14 +353,14 @@
           </select>
         </div>
 
-        <div class="filter-group">
+   <div class="filter-group">
           <label style="visibility:hidden">reset</label>
           <button id="reset-filters" class="btn" aria-label="Reset filters">Reset</button>
         </div>
       </div>
     </div>
 
-    <div class="list-and-map">
+  <div class="list-and-map">
       <!-- Hospital list -->
       <div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
@@ -332,8 +370,8 @@
         <div class="hospital-list" id="hospital-list" aria-live="polite"></div>
       </div>
    
-      <!-- Map -->
-      <div id="map" role="region" aria-label="Delhi hospitals and blood banks map"></div>
+     <!-- Map -->
+  <div id="map" role="region" aria-label="Delhi hospitals and blood banks map"></div>
     </div>
   </section>
 
@@ -344,7 +382,7 @@
       Find your nearest blood banks and check which blood groups are currently available. Click a row to center the map on that blood bank.
     </p>
 
-    <table style="width:90%; max-width:940px; margin:0 auto 3rem; border-collapse:collapse; box-shadow:0 4px 20px rgba(0,0,0,0.05);">
+  <table style="width:90%; max-width:940px; margin:0 auto 3rem; border-collapse:collapse; box-shadow:0 4px 20px rgba(0,0,0,0.05);">
       <thead>
         <tr style="background:var(--primary-color); color:white;">
           <th style="padding:0.9rem;">Blood Bank</th>
